@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import axios from 'axios';
 
 class TableRow extends Component {
 
@@ -12,13 +11,17 @@ class TableRow extends Component {
     return (
       <tr>
         <td>
+          {this.props.ordinalNumber}
+        </td>
+        <td>
+          {this.props.obj.id}
+        </td>
+        <td>
           {this.props.obj.name}
         </td>
-        <td>
+        <td className="text-right">
           <Link to={"/edit/" + this.props.obj.id} className="btn btn-primary btn-sm">Edit</Link>
-        </td>
-        <td>
-          <button onClick={this.onDelete} className="btn btn-danger btn-sm">Delete</button>
+          <button onClick={this.onDelete} className="btn btn-danger btn-sm ml-2">Delete</button>
         </td>
       </tr>
     );

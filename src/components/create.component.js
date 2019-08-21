@@ -1,17 +1,19 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import axios from 'axios';
 
 export default class Create extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
       name: '',
     }
   }
+
   onChange = (e) => {
-    var target = e.target;
-    var name = target.name;
-    var value = target.value;
+    const target = e.target;
+    const name = target.name;
+    const value = target.value;
     this.setState({
       [name]: value
     });
@@ -24,25 +26,37 @@ export default class Create extends Component {
     };
     axios.post('http://localhost:8081/api/category', obj)
       .then(res => {
-        let message = res.data.message;
+        console.log(res);
         let category = res.data.data;
+        let {message} = res.data;
         if (category) {
           this.setState({
             name: category.name
           });
         } else {
-          console.log(message); 
+          console.log(this.state);
+          console.log(message);
+          this.setState({
+            message: message,
+          });
         }
-      });
-  }
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    //browserHistory.push('/index');
+    //this.props.history.push("/index")
+
+
+  };
 
   render() {
     return (
-      <div style={{ marginTop: 10 }}>
+      <div style={{marginTop: 10}}>
         <h3>Add New Category</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
-            <label>Category Name:  </label>
+            <label>Category Name *</label>
             <input
               type="text"
               className="form-control"
@@ -52,7 +66,7 @@ export default class Create extends Component {
             />
           </div>
           <div className="form-group">
-            <input type="submit" value="Create" className="btn btn-primary" />
+            <input type="submit" value="Create" className="btn btn-primary"/>
           </div>
         </form>
       </div>
