@@ -2,9 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import TableRow from './TableRow';
 import 'react-awesome-slider/dist/styles.css';
-
 import {Link} from 'react-router-dom';
-
 
 export default class Index extends Component {
 
@@ -24,17 +22,18 @@ export default class Index extends Component {
     let page = params.get('page');
     if (page == null) page = 1;
     const offset = (page - 1) * 4;
-    console.log(page);
-    axios.get('http://localhost:8081/api/category', {
-      params: {
-        sort_by: 'id',
-        direction: 'desc',
-        offset: offset,
-        limit: 4,
-      }
-    })
+    axios
+      .get('http://localhost:8081/api/category', {
+        params: {
+          sort_by: 'id',
+          direction: 'desc',
+          offset: offset,
+          limit: 4,
+        }
+      })
       .then(response => {
         let data = response.data.data;
+        console.log(data);
         this.setState({
           categories: data.content,
           totalPages: data.totalPages,  //tổng số trang
@@ -49,7 +48,8 @@ export default class Index extends Component {
   }
 
   onDelete = (categoryId) => {
-    axios.delete('http://localhost:8081/api/category/' + categoryId)
+    axios
+      .delete('http://localhost:8081/api/category/' + categoryId)
       .then(() => {
         let idx = -1;
         let {categories} = this.state;
@@ -121,8 +121,7 @@ export default class Index extends Component {
         </div>
         <div className="row">
           <div className="col-sm-6">
-            Showing {this.state.pageNumber * 4 + 1} to {this.state.pageNumber * 4
-              + this.state.numberOfElements} of {this.state.totalElements} entries
+            Showing {this.state.pageNumber * 4 + 1} to {this.state.pageNumber * 4 + this.state.numberOfElements} of {this.state.totalElements} entries
           </div>
           <div className="col-sm-6">
             <nav aria-label="Page navigation" className="d-flex justify-content-end">
@@ -157,14 +156,15 @@ export default class Index extends Component {
   onSwitchPage = (event) => {
     let pageNumber = event.target.id;
     const offset = pageNumber * 4;
-    axios.get('http://localhost:8081/api/category', {
-      params: {
-        sort_by: 'id',
-        direction: 'desc',
-        offset: offset,
-        limit: 4,
-      }
-    })
+    axios
+      .get('http://localhost:8081/api/category', {
+        params: {
+          sort_by: 'id',
+          direction: 'desc',
+          offset: offset,
+          limit: 4,
+        }
+      })
       .then(response => {
         let data = response.data.data;
         this.setState({
@@ -172,7 +172,7 @@ export default class Index extends Component {
           totalPages: data.totalPages,
           totalElements: data.totalElements,
           numberOfElements: data.numberOfElements,
-          pageNumber: data.pageable.pageNumber
+          pageNumber: data.pageable.pageNumber,
         });
       })
       .catch(function (error) {

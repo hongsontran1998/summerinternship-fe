@@ -20,7 +20,8 @@ export default class Edit extends Component {
   };
   componentDidMount() {
     let id = this.props.match.params.id;
-    axios.get(`http://localhost:8081/api/category/${id}`)
+    axios
+      .get(`http://localhost:8081/api/category/${id}`)
       .then(response => {
         this.setState({
           name: response.data.data.name
@@ -36,7 +37,8 @@ export default class Edit extends Component {
       id: this.props.match.params.id,
       name: this.state.name,
     };
-    axios.put('http://localhost:8081/api/category', obj)
+    axios
+      .put('http://localhost:8081/api/category', obj)
       .then(res => {
         let message = res.data.message;
         let category = res.data.data;
@@ -44,13 +46,13 @@ export default class Edit extends Component {
           this.setState({
             name: category.name
           });
+          this.props.history.goBack();
         } else {
           this.setState({
             message: message
           });
         }
       });
-    //this.props.history.push('/index');
   };
 
   render = () => {
@@ -61,7 +63,8 @@ export default class Edit extends Component {
             Please enter correct input
           </Alert>
         <form onSubmit={this.onSubmit}>
-          <div className="form-group">
+          <div className="form-group">n
+
             <label>Category Name:  </label>
             <input
               type="text"

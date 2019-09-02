@@ -7,6 +7,7 @@ import Create from './components/create.component';
 import Edit from './components/edit.component';
 import Index from './components/index.component';
 import Home from "./components/home.component";
+import Detail from "./components/detail.component";
 
 class App extends Component {
 
@@ -35,6 +36,7 @@ class App extends Component {
                 <Route path='/index' component={Index}/>
                 <Route path='/create' component={Create}/>
                 <Route path='/edit/:id' component={Edit}/>
+                <Route path='/category/:slug' component={Detail}/>
               </Switch>
             </div>
           </div>

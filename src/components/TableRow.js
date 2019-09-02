@@ -21,6 +21,7 @@ class TableRow extends Component {
         </td>
         <td className="text-right">
           <Link to={"/edit/" + this.props.obj.id} className="btn btn-primary btn-sm">Edit</Link>
+          <Link to={"/category/" + this.props.obj.slug} className="btn btn-info btn-sm">Detail</Link>
           <button onClick={this.onDelete} className="btn btn-danger btn-sm ml-2">Delete</button>
         </td>
       </tr>

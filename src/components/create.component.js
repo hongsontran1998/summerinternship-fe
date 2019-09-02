@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import {Redirect} from "react-router";
 
 export default class Create extends Component {
 
@@ -7,6 +8,7 @@ export default class Create extends Component {
     super(props);
     this.state = {
       name: '',
+      // redirect: false
     }
   }
 
@@ -17,7 +19,7 @@ export default class Create extends Component {
     this.setState({
       [name]: value
     });
-  }
+  };
 
   onSubmit = (e) => {
     e.preventDefault();
@@ -31,8 +33,10 @@ export default class Create extends Component {
         let {message} = res.data;
         if (category) {
           this.setState({
-            name: category.name
+            name: category.name,
+            // redirect: true,
           });
+          this.props.history.push("/index")
         } else {
           console.log(this.state);
           console.log(message);
@@ -42,15 +46,17 @@ export default class Create extends Component {
         }
       })
       .catch(err => {
-        console.log(err)
+        console.log(err);
       })
-    //browserHistory.push('/index');
-    //this.props.history.push("/index")
-
 
   };
 
   render() {
+    // const {redirect} = this.state;
+    // if (redirect) {
+    //   return <Redirect to='/index'/>;
+    // }
+
     return (
       <div style={{marginTop: 10}}>
         <h3>Add New Category</h3>
