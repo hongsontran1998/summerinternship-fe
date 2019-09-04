@@ -3,11 +3,12 @@ import axios from 'axios';
 import TableRow from './TableRow';
 import 'react-awesome-slider/dist/styles.css';
 import {Link} from 'react-router-dom';
+import {CategoryApiService} from "../services/CategoryApiService";
 
 export default class Index extends Component {
-
   constructor(props) {
     super(props);
+
     this.state = {
       categories: [],
       totalPages: 0,
@@ -15,6 +16,8 @@ export default class Index extends Component {
       numberOfElements: 0,
       pageNumber: 0,
     };
+
+    this.categoryService = new CategoryApiService();
   }
 
   componentDidMount() {
@@ -22,15 +25,7 @@ export default class Index extends Component {
     let page = params.get('page');
     if (page == null) page = 1;
     const offset = (page - 1) * 4;
-    axios
-      .get('http://localhost:8081/api/category', {
-        params: {
-          sort_by: 'id',
-          direction: 'desc',
-          offset: offset,
-          limit: 4,
-        }
-      })
+    this.categoryService.findAllOrFilter('id', 'desc', offset, 4)
       .then(response => {
         let data = response.data.data;
         console.log(data);
@@ -156,15 +151,7 @@ export default class Index extends Component {
   onSwitchPage = (event) => {
     let pageNumber = event.target.id;
     const offset = pageNumber * 4;
-    axios
-      .get('http://localhost:8081/api/category', {
-        params: {
-          sort_by: 'id',
-          direction: 'desc',
-          offset: offset,
-          limit: 4,
-        }
-      })
+    this.categoryService.findAllOrFilter('id', 'desc', offset, 4)
       .then(response => {
         let data = response.data.data;
         this.setState({
