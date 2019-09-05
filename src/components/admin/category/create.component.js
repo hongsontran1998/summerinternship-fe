@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import axios from 'axios';
-import {Redirect} from "react-router";
+import axios from 'axios/index';
 
 export default class Create extends Component {
 
@@ -8,7 +7,6 @@ export default class Create extends Component {
     super(props);
     this.state = {
       name: '',
-      // redirect: false
     }
   }
 
@@ -52,11 +50,6 @@ export default class Create extends Component {
   };
 
   render() {
-    // const {redirect} = this.state;
-    // if (redirect) {
-    //   return <Redirect to='/index'/>;
-    // }
-
     return (
       <div style={{marginTop: 10}}>
         <h3>Add New Category</h3>

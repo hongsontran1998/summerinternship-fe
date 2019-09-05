@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
-import axios from 'axios';
+import axios from 'axios/index';
 import TableRow from './TableRow';
-import 'react-awesome-slider/dist/styles.css';
 import {Link} from 'react-router-dom';
-import {CategoryApiService} from "../services/CategoryApiService";
+import {CategoryApiService} from "../../../services/api/CategoryApiService";
 
 export default class Index extends Component {
   constructor(props) {

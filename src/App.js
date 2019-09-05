@@ -3,11 +3,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import 'react-notifications/lib/notifications.css';
 
-import Create from './components/create.component';
-import Edit from './components/edit.component';
-import Index from './components/index.component';
-import Home from "./components/home.component";
-import Detail from "./components/detail.component";
+import Create from './components/admin/category/create.component';
+import Edit from './components/admin/category/edit.component';
+import Index from './components/admin/category/index.component';
+import Home from "./components/admin/category/home.component";
+import Detail from "./components/admin/category/detail.component";
 
 class App extends Component {
 

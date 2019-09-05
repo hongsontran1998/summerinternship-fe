@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import axios from 'axios';
-import {Redirect} from "react-router";
+import axios from 'axios/index';
 
 export default class Detail extends Component {
 

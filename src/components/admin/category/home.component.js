@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import 'react-awesome-slider/dist/styles.css';
 
 export default class Home extends Component {
 
